@@ -1,0 +1,75 @@
+" Set environment variable for dot files
+
+" Enable line numbers
+set relativenumber
+
+" Set tab and indentation options
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+
+" Disable line wrapping
+set nowrap
+
+" Enable swapfile and undofile
+set swapfile
+set undofile
+
+" Enable search highlighting and incremental searching
+set hlsearch
+set incsearch
+
+" Enable true color support
+set termguicolors
+
+" Set scroll offset and sign column
+set scrolloff=8
+
+" Set update time and timeout length
+set updatetime=50
+set timeoutlen=500
+
+
+" Ignore case when searching
+set ignorecase
+set smartcase
+
+" Split windows to the right
+set splitright
+
+" Enable smooth scrolling
+set smoothscroll
+
+
+
+
+"############# REMAPS ############
+" Move lines when they are visually selected
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
+" Add new empty lines
+nnoremap <CR> o<ESC>
+
+" Keep cursor in place
+nnoremap J mzJ`z
+nnoremap <C-d> <C-d>zz
+nnoremap <C-u> <C-u>zz
+
+" Exit terminal mode easier
+tnoremap <Esc><Esc> <C-\><C-n> " Exit terminal mode
+
+" Exit hlsearch
+nnoremap <Esc><Esc> :nohlsearch<CR>
+
+" Keybinds to make split navigation easier.
+" Use CTRL+<hjkl> to switch between windows
+nnoremap <C-h> <C-w>h " Move focus to the left window
+nnoremap <C-l> <C-w>l " Move focus to the right window
+nnoremap <C-j> <C-w>j " Move focus to the lower window
+nnoremap <C-k> <C-w>k " Move focus to the upper window
+
+highlight Normal ctermbg=NONE guibg=NONE " Set normal background to transparent
+highlight SignColumn guibg=black ctermbg=black
