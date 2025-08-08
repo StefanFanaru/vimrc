@@ -37,6 +37,12 @@ set timeoutlen=500
 " Set leader key
 let mapleader = " "
 
+" Bind Space + f to execute :Files
+nnoremap <leader>f :Files<CR>
+
+" Copy to system clipboard using Space + Y
+vnoremap <leader>y <Plug>OSCYankVisual
+
 " Netrw settings
 let g:netrw_browse_split = 0
 let g:netrw_banner = 0
@@ -57,12 +63,8 @@ set splitright
 set smoothscroll
 
 
-
-
 "############# REMAPS ############
 " Show Netrw directory listing when pressing \ twice
-vmap <C-x> :!pbcopy<CR>  
-vmap <C-c> :w !pbcopy<CR><CR> 
 nnoremap \\ :Ex<CR>
 nnoremap <leader>sf :Files<CR>
 
@@ -83,10 +85,6 @@ nnoremap N Nzzzv
 
 " When pasting over, preserve initial yanked value
 xnoremap <leader>p "_dP " Paste while keeping registry
-
-" Allow copying into system clipboard
-vnoremap <leader>y "+y " Copy to system registry
-nnoremap <leader>Y "+Y " Copy to system registry
 
 " Make C-c work in visual block
 inoremap <C-c> <Esc>
@@ -128,6 +126,7 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-sensible'
 Plug 'catppuccin/vim', { 'as': 'catppuccin' }
 Plug 'sheerun/vim-polyglot'
+Plug 'ojroques/vim-oscyank', {'branch': 'main'}
 
 call plug#end()
 
@@ -135,11 +134,12 @@ function ApplyPluginsConfig()
     let g:lightline = {'colorscheme': 'catppuccin_mocha'}
     syntax on
     colorscheme catppuccin_mocha
-    highlight Normal ctermbg=NONE guibg=NONE " Set normal background to transparent 
+    highlight Normal ctermbg=NONE guibg=NONE " Set normal background to transparent
     highlight SignColumn guibg=black ctermbg=black
     let g:airline_section_y = ''
     let g:airline_section_z = ''
     let g:airline#extensions#whitespace#enabled = 0
+    let g:oscyank_max_length = 0
 endfunction
 
 " Auto-install plugins if they are not already installed
@@ -151,3 +151,4 @@ if empty(glob('~/.vim/plugged/*'))
 else
   call ApplyPluginsConfig()
 endif
+
